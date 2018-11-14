@@ -9,17 +9,17 @@ package sistemasdistribuidos_matricula_danielrivera;
  *
  * @author Lenovo
  */
-public class Register extends javax.swing.JFrame {
+public class Menu extends javax.swing.JFrame {
 
     /**
-     * Creates new form Register
+     * Creates new form Menu
      */
-    public Register() {
+    public Menu() {
         initComponents();
         setSize(360,460);//Para dar tamaño a la ventana
         setResizable(false);//Para que no se pueda retirar
         setLocationRelativeTo(null);//Para que aparezca a la mitad de la pantalla
-        setTitle("Registrar");
+        setTitle("Menú");
     }
 
     /**
@@ -31,33 +31,50 @@ public class Register extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnMenu = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/casa (2).png"))); // NOI18N
-        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel3.setText("Supervisor");
+        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(50, 160, 140, 40);
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel2.setText("Estudiante");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(50, 250, 140, 40);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ajustes.png"))); // NOI18N
+        getContentPane().add(jButton1);
+        jButton1.setBounds(230, 160, 80, 50);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuario.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenuActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnMenu);
-        btnMenu.setBounds(270, 380, 62, 48);
+        getContentPane().add(jButton2);
+        jButton2.setBounds(230, 250, 80, 50);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lenovo\\Documents\\NetBeansProjects\\SistemasDistribuidos_Matricula_DanielRivera\\src\\imagenes\\fondo_Registrar.png")); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 350, 450);
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lenovo\\Documents\\NetBeansProjects\\SistemasDistribuidos_Matricula_DanielRivera\\src\\imagenes\\fondo_Menu.png")); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 350, 450);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        Menu obj= new Menu();
-        obj.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnMenuActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -76,26 +93,29 @@ public class Register extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Register().setVisible(true);
+                new Menu().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMenu;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

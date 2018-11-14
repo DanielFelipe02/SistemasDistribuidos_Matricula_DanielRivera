@@ -22,7 +22,6 @@ public class Login extends javax.swing.JFrame {
         setResizable(false);//Para que no se pueda retirar
         setLocationRelativeTo(null);//Para que aparezca a la mitad de la pantalla
         setTitle("Ingreso");
-        jPanel1.setSize(360,460);
     }
 
     /**
@@ -40,8 +39,8 @@ public class Login extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnRegistrar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnMenu = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,7 +54,7 @@ public class Login extends javax.swing.JFrame {
                 btnInciarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnInciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 100, 30));
+        jPanel1.add(btnInciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 120, 70));
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 200, 40));
         jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 200, 40));
 
@@ -67,19 +66,16 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 250, 40));
 
-        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/btn_regist_1.png"))); // NOI18N
-        btnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnRegistrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/btn_regist_2.png"))); // NOI18N
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/casa (2).png"))); // NOI18N
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
+                btnMenuActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 100, 30));
+        jPanel1.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/frame_2.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, -20, 400, 450));
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lenovo\\Documents\\NetBeansProjects\\SistemasDistribuidos_Matricula_DanielRivera\\src\\imagenes\\fondo_Ingresar.png")); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 450));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,7 +85,7 @@ public class Login extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -108,9 +104,9 @@ public class Login extends javax.swing.JFrame {
                return;
             }
             if (txtPassword.getPassword().length==0) {
-              JOptionPane.showMessageDialog(null, "Digite la contraseña");
-              txtPassword.requestFocus();
-              return;
+                JOptionPane.showMessageDialog(null, "Digite la contraseña");
+                txtPassword.requestFocus();
+                return;
             }
             //Asigno los elementos graficos a las variables
             usuario=txtUsuario.getText();
@@ -131,18 +127,17 @@ public class Login extends javax.swing.JFrame {
                 txtPassword.setText("");
                 txtUsuario.requestFocus();
     }//GEN-LAST:event_btnInciarActionPerformed
-        }
+            }
         catch (Exception e) {
         JOptionPane.showMessageDialog(null,"Error:"+ e);
         }
     }
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
-        Register obj= new Register();
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        Menu obj= new Menu();
         obj.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btnRegistrarActionPerformed
-
+    }//GEN-LAST:event_btnMenuActionPerformed
+        
     /**
      * @param args the command line arguments
      */
@@ -181,10 +176,10 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInciar;
-    private javax.swing.JButton btnRegistrar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsuario;
