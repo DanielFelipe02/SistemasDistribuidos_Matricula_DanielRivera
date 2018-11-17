@@ -5,37 +5,32 @@
  */
 package sistemasdistribuidos_matricula_danielrivera;
 
-import javax.swing.JOptionPane;
 import java.sql.*;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lenovo
  */
 public class BaseDeDatos {
     
-    public String db = "ventaspeliculas";
-    public String url = "jdbc:mysql://localhost/" + db;
-    public String user = "root";
-    public String pass = "";
+    public String db ="ventaspeliculas";
+    public String url ="jdbc:mysql://localhost/" + db;
+    public String user ="root";
+    public String pass ="";
 
-
-    public BaseDeDatos()
-    {
+    public BaseDeDatos(){
 
     }
-
+    
     public Connection Connectar(){
         Connection link = null;
         try {
-           Class.forName("org.gjt.mm.mysql.Driver");
+            Class.forName("org.gjt.mm.mysql.Driver");
             link = DriverManager.getConnection(url, user, pass);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,e);
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, e);
         }
         return link;
-    }
-
-    public static void main (String[] args){
-
     }
 }

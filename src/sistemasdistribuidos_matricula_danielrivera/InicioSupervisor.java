@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Kathe
+ * @author Lenovo
  */
 public class InicioSupervisor extends javax.swing.JFrame {
 
@@ -22,7 +22,7 @@ public class InicioSupervisor extends javax.swing.JFrame {
         setSize(360,460);//Para dar tamaño a la ventana
         setResizable(false);//Para que no se pueda retirar
         setLocationRelativeTo(null);//Para que aparezca a la mitad de la pantalla
-        setTitle("Ingreso");
+        setTitle("Ingreso Supervisor");
     }
 
     /**
@@ -103,11 +103,10 @@ public class InicioSupervisor extends javax.swing.JFrame {
             String usuario;
             String password;
             String id = "";
-            
             usuario = txtUsuario.getText();
             password = new String(txtPassword.getPassword());
 
-            String sql="SELECT * FROM Supervisor WHERE usuario ='"+usuario+"'AND contraseña = '"+password+"'";
+            String sql="SELECT * FROM supervisor WHERE usuario ='"+usuario+"'AND contraseña = '"+password+"'";
             
             try {
                 
@@ -126,15 +125,16 @@ public class InicioSupervisor extends javax.swing.JFrame {
                 ResultSet rs=st.executeQuery(sql);
                 
                 while (rs.next()){
-                    id = rs.getString("id");
+                    id = rs.getString("id_supervisor");
                 }
                 if (id.equals("")){
                     JOptionPane.showMessageDialog (null,"Usuario no registrado");
                 }
                 else{
-                    Registrar obj= new Registrar();
+
+                    RegistrarEmpleado obj= new RegistrarEmpleado();
                     obj.setVisible(true);
-                    dispose();
+                    this.setVisible(false);
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null,e);
