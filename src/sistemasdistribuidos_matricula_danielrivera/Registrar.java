@@ -9,14 +9,14 @@ package sistemasdistribuidos_matricula_danielrivera;
  *
  * @author Lenovo
  */
-public class Register extends javax.swing.JFrame {
+public class Registrar extends javax.swing.JFrame {
 
     /**
      * Creates new form Register
      */
-    public Register() {
+    public Registrar() {
         initComponents();
-        setSize(360,460);//Para dar tamaño a la ventana
+        setSize(350,450);//Para dar tamaño a la ventana
         setResizable(false);//Para que no se pueda retirar
         setLocationRelativeTo(null);//Para que aparezca a la mitad de la pantalla
         setTitle("Registrar");
@@ -76,20 +76,21 @@ public class Register extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Registrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Register().setVisible(true);
+                new Registrar().setVisible(true);
             }
         });
     }
