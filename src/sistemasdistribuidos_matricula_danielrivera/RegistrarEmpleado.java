@@ -7,6 +7,7 @@ package sistemasdistribuidos_matricula_danielrivera;
 
 import java.sql.*;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
 public class RegistrarEmpleado extends javax.swing.JFrame {
 
     public int indice;   
-    // Instancio la clase Postgres
+    // Instancio la clase
     private Conexion objConexion = new Conexion();
     /**
      * Creates new form Register
@@ -38,7 +39,7 @@ public class RegistrarEmpleado extends javax.swing.JFrame {
     private void initComponents() {
 
         btnMenu = new javax.swing.JButton();
-        txtIdSupervisor = new javax.swing.JTextField();
+        txtIdCajero = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -57,12 +58,15 @@ public class RegistrarEmpleado extends javax.swing.JFrame {
         txtContraseña = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTablaEmpleados = new javax.swing.JTable();
+        tblCajeros = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        txtIdSupervisor = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,17 +81,17 @@ public class RegistrarEmpleado extends javax.swing.JFrame {
         getContentPane().add(btnMenu);
         btnMenu.setBounds(620, 470, 62, 48);
 
-        txtIdSupervisor.addActionListener(new java.awt.event.ActionListener() {
+        txtIdCajero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdSupervisorActionPerformed(evt);
+                txtIdCajeroActionPerformed(evt);
             }
         });
-        getContentPane().add(txtIdSupervisor);
-        txtIdSupervisor.setBounds(50, 130, 170, 24);
+        getContentPane().add(txtIdCajero);
+        txtIdCajero.setBounds(130, 470, 130, 24);
 
-        jLabel1.setText("Id del Supervisor:");
+        jLabel1.setText("(Solo apto al Modificar o Actualizar)");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(50, 110, 110, 16);
+        jLabel1.setBounds(50, 500, 210, 16);
 
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,7 +189,7 @@ public class RegistrarEmpleado extends javax.swing.JFrame {
         getContentPane().add(jLabel9);
         jLabel9.setBounds(510, 230, 110, 16);
 
-        jTablaEmpleados.setModel(new javax.swing.table.DefaultTableModel(
+        tblCajeros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -193,10 +197,10 @@ public class RegistrarEmpleado extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTablaEmpleados);
+        jScrollPane1.setViewportView(tblCajeros);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(53, 303, 630, 150);
+        jScrollPane1.setBounds(13, 303, 700, 150);
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscando-en-la-tierra.png"))); // NOI18N
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -217,17 +221,48 @@ public class RegistrarEmpleado extends javax.swing.JFrame {
         btnGuardar.setBounds(320, 470, 62, 48);
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ajustes.png"))); // NOI18N
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnActualizar);
         btnActualizar.setBounds(440, 470, 62, 48);
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/goma-de-borrar.png"))); // NOI18N
         btnLimpiar.setToolTipText("");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnLimpiar);
         btnLimpiar.setBounds(500, 470, 62, 48);
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuario.png"))); // NOI18N
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnEliminar);
         btnEliminar.setBounds(560, 470, 62, 48);
+
+        jLabel10.setText("Id del Supervisor:");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(50, 110, 110, 16);
+
+        txtIdSupervisor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdSupervisorActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtIdSupervisor);
+        txtIdSupervisor.setBounds(50, 130, 170, 24);
+
+        jLabel12.setText("id cajero:");
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(50, 470, 70, 16);
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo_registrar3.png"))); // NOI18N
         getContentPane().add(jLabel11);
@@ -242,9 +277,9 @@ public class RegistrarEmpleado extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnMenuActionPerformed
 
-    private void txtIdSupervisorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdSupervisorActionPerformed
+    private void txtIdCajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdCajeroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdSupervisorActionPerformed
+    }//GEN-LAST:event_txtIdCajeroActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
@@ -280,12 +315,60 @@ public class RegistrarEmpleado extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
+        //   ***** Buscar *****
+        
+        // Abro la conexion con la Base de Datos
+        objConexion.conexion();
+        
+        // Creo el modelo para del JTable
+        DefaultTableModel modelo = (DefaultTableModel) tblCajeros.getModel();
+        // Defino un vector para el cargue del JTable
+        String vector[] = new String[10];
+               
+        // Limpio el JTable antes del cargue
+        modelo.setColumnCount(0);
+        modelo.setNumRows(0);
+        
+        // Cargo las columnas de titulo al Jtable
+        modelo.addColumn("CÓDIGO");
+        modelo.addColumn("CÓDIGO SUP");
+        modelo.addColumn("CEDULA");
+        modelo.addColumn("NOMBRE");
+        modelo.addColumn("APELLIDO");
+        modelo.addColumn("CORREO");
+        modelo.addColumn("DIRECCIÓN");
+        modelo.addColumn("TELÉFONO");
+        modelo.addColumn("USUARIO");
+        modelo.addColumn("CONTRASEÑA");
+        
+        try{
+             ResultSet rs = objConexion.leer("SELECT `id_cajero`, `id_cajero_supervisor`, `cedula`, `nombre`, `apellido`, `correo`, `direccion`, `telefono`, `usuario`, `contraseña` FROM `cajero`");
+            while(rs.next()){
+                // Cargo el vector con los valores de la fila a cargar en el JTabl
+                vector[0] = String.valueOf(rs.getInt("id_cajero"));
+                vector[1] = rs.getString("id_cajero_supervisor");
+                vector[2] = rs.getString("cedula");
+                vector[3] = rs.getString("nombre"); 
+                vector[4] = rs.getString("apellido"); 
+                vector[5] = rs.getString("correo"); 
+                vector[6] = rs.getString("direccion");
+                vector[7] = rs.getString("telefono");
+                vector[8] = rs.getString("usuario");
+                vector[9] = rs.getString("contraseña");
+                // Adiciono la fila al JTable
+                modelo.addRow(vector);                 
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        
+        // Cierro la conexión con la Base de Datos
+        objConexion.desconectar();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         // *** Defino las variables ***
-        int contador = 0;
         int idSupervisor;
         int cedula;
         String nombre;
@@ -360,39 +443,20 @@ public class RegistrarEmpleado extends javax.swing.JFrame {
         telefono = txtTelefono.getText();
         usuario = txtUsuario.getText();
         contraseña = txtContraseña.getText();
-        String id = "";
         
        
         // *** Realizo los procesos ***
         
         // Abro la conexion con la Base de Datos
         objConexion.conexion();
-        
-        /*String sql="INSERT INTO cajero VALUES('"+idSupervisor+"','"+cedula+"','"+nombre+"','"+apellido+"','"+correo+"','"+direccion+"','"+telefono+"','"+usuario+"','"+contraseña+"')";
-            
-            try {
-                
-                Statement st = cn.createStatement();
-                ResultSet rs=st.executeQuery(sql);
-                
-                while (rs.next()){
-                    id = rs.getString("id_cajero");
-                }
-                if (id.equals("")){
-                    JOptionPane.showMessageDialog (null,"Usuario no registrado");
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null,e);
-            }*/
+
         try{
-            // Busco el ultimo registro de la tabla Vendedoor y lo incremento en 1
-            ResultSet rs = objConexion.leer("SELECT MAX(id_cajero) AS contador FROM cajero");
+            // Busco el ultimo registro de la tabla y lo incremento en 1
+            ResultSet rs = objConexion.leer("SELECT MAX(id_cajero) FROM cajero");
             // Traigo el siguiente registro
             rs.next();
-            // Incremento el contador para almacenar el registro con este nuevo indice
-            contador= rs.getInt("contador") + 1;
             
-            // Inserto el registro en la tabla ciudad
+            // Inserto el registro en la tabla
             boolean respuesta = objConexion.consultar("INSERT INTO cajero (`id_cajero_supervisor`, `cedula`, `nombre`, `apellido`, `correo`, `direccion`, `telefono`, `usuario`, `contraseña`) VALUES('"+idSupervisor+"','"+cedula+"','"+nombre+"','"+apellido+"','"+correo+"','"+direccion+"','"+telefono+"','"+usuario+"','"+contraseña+"') ");
             
             // Imprimo el mensaje para indicar si se guardo o no el registro
@@ -403,7 +467,7 @@ public class RegistrarEmpleado extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "ERROR: No se pudo guardar el registro.");
             } 
         }catch(Exception ex){
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,ex);
         }
         // *** Limpio los Campos ***   
         txtIdSupervisor.setText("");
@@ -415,10 +479,207 @@ public class RegistrarEmpleado extends javax.swing.JFrame {
         txtTelefono.setText("");
         txtUsuario.setText("");
         txtContraseña.setText("");
+        txtIdCajero.setText("");
         
         // Cierro la conexión con la Base de Datos
         objConexion.desconectar();
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void txtIdSupervisorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdSupervisorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdSupervisorActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:
+        // *** Defino las variables ***
+        int idCajero;
+        int idSupervisor;
+        int cedula;
+        String nombre;
+        String apellido;
+        String correo;
+        String direccion;
+        String telefono;
+        String usuario;
+        String contraseña;
+        
+        if(txtIdCajero.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar el Id del Cajero a modificar.");
+            txtIdCajero.requestFocus();
+            return;
+        } 
+        
+        if(txtIdSupervisor.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar el Id del Supervisor.");
+            txtIdSupervisor.requestFocus();
+            return;
+        } 
+
+        if(txtCedula.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar la cedula.");
+            txtCedula.requestFocus();
+            return;
+        } 
+
+        if(txtNombre.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar el nombre.");
+            txtNombre.requestFocus();
+            return;
+        } 
+        
+        if(txtApellido.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar el apellido.");
+            txtApellido.requestFocus();
+            return;
+        } 
+        
+        if(txtCorreo.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar el correo.");
+            txtCorreo.requestFocus();
+            return;
+        }
+        
+        if(txtDireccion.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar la dirección.");
+            txtDireccion.requestFocus();
+            return;
+        }
+        
+        if(txtTelefono.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar el telefono.");
+            txtTelefono.requestFocus();
+            return;
+        }
+        
+        if(txtUsuario.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar el usuario.");
+            txtUsuario.requestFocus();
+            return;
+        }
+        
+        if(txtContraseña.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar la contraseña.");
+            txtContraseña.requestFocus();
+            return;
+        } 
+         
+         // *** Asigno los elementos gráficos a las variables ***
+        idCajero = Integer.parseInt(txtIdCajero.getText());
+        idSupervisor = Integer.parseInt(txtIdSupervisor.getText());
+        cedula = Integer.parseInt(txtCedula.getText());
+        nombre = txtNombre.getText();
+        apellido = txtApellido.getText();
+        correo = txtCorreo.getText();
+        direccion = txtDireccion.getText();
+        telefono = txtTelefono.getText();
+        usuario = txtUsuario.getText();
+        contraseña = txtContraseña.getText();
+        
+       
+        // *** Realizo los procesos ***
+        
+        // Abro la conexion con la Base de Datos
+        objConexion.conexion();
+
+        try{           
+            // Modifico el registro en la tabla
+            boolean respuesta = objConexion.consultar("UPDATE `cajero` SET `id_cajero_supervisor`='"+idSupervisor+"',`cedula`='"+cedula+"',`nombre`='"+nombre+"',`apellido`='"+apellido+"',`correo`='"+correo+"',`direccion`='"+direccion+"',`telefono`='"+telefono+"',`usuario`='"+usuario+"',`contraseña`='"+contraseña+"' WHERE id_cajero='"+idCajero+"'");
+            
+            // Imprimo el mensaje para indicar si se guardo o no el registro
+            if(respuesta == true){                
+                JOptionPane.showMessageDialog(null,"Su registro se guardo con éxito.");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "ERROR: No se pudo guardar el registro.");
+            } 
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,ex);
+        }
+        // *** Limpio los Campos ***   
+        txtIdSupervisor.setText("");
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtCorreo.setText("");
+        txtDireccion.setText("");
+        txtTelefono.setText("");
+        txtUsuario.setText("");
+        txtContraseña.setText("");
+        txtIdCajero.setText("");
+        
+        // Cierro la conexión con la Base de Datos
+        objConexion.desconectar();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        // Defino el modelo para el JTable
+        DefaultTableModel modelo = (DefaultTableModel) tblCajeros.getModel();        
+
+        // Abro la conexión con la Base de Datos
+        try{
+            objConexion.conexion();
+
+            // Asigno el indice del elemento seleccionado 
+            indice = tblCajeros.getSelectedRow();                   
+
+            // Asigno a idCiudad el elemento a eliminar
+            int idCajero =  Integer.parseInt((String)modelo.getValueAt(indice, 0));        
+
+            // Elimino el registro del JTable
+            modelo.removeRow(indice);
+
+            // Elimino el registro de la tabla ciudad
+            boolean respuesta = objConexion.consultar("DELETE FROM cajero WHERE id_cajero = '"+idCajero+"' ");
+
+            // Imprimo el mensaje para indicar si se eliminó o no el registro
+            if(respuesta == true){
+               JOptionPane.showMessageDialog(null, "El registro se elimino.");
+            }
+            else{
+               JOptionPane.showMessageDialog(null, "ERROR: No se elimino el registro.");
+        }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,ex);
+        }
+        // *** Limpio los Campos ***   
+        txtIdSupervisor.setText("");
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtCorreo.setText("");
+        txtDireccion.setText("");
+        txtTelefono.setText("");
+        txtUsuario.setText("");
+        txtContraseña.setText("");
+        txtIdCajero.setText("");
+
+        // Limpio las filas y las columnas de la tabla
+        modelo.setColumnCount(0);
+        modelo.setNumRows(0);      
+        
+        // Cierro la conexión a la Base de Datos
+        objConexion.desconectar();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel modelo = (DefaultTableModel) tblCajeros.getModel();
+        
+        txtIdSupervisor.setText("");
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtCorreo.setText("");
+        txtDireccion.setText("");
+        txtTelefono.setText("");
+        txtUsuario.setText("");
+        txtContraseña.setText("");
+        txtIdCajero.setText("");
+        
+        modelo.setColumnCount(0);
+        modelo.setNumRows(0); 
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -467,7 +728,9 @@ public class RegistrarEmpleado extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnMenu;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -477,12 +740,13 @@ public class RegistrarEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTablaEmpleados;
+    private javax.swing.JTable tblCajeros;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtContraseña;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtIdCajero;
     private javax.swing.JTextField txtIdSupervisor;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;

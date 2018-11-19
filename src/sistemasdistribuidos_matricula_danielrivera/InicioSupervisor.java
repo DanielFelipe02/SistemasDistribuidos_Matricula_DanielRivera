@@ -13,7 +13,8 @@ import javax.swing.JOptionPane;
  * @author Lenovo
  */
 public class InicioSupervisor extends javax.swing.JFrame {
-
+    
+    private Conexion objConexion = new Conexion();
     /**
      * Creates new form Login
      */
@@ -139,6 +140,36 @@ public class InicioSupervisor extends javax.swing.JFrame {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null,e);
             }
+            /*objConexion.conexion();
+            
+            if (txtUsuario.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Digite el usuario");
+                txtUsuario.requestFocus();
+                return;
+            }
+            if (txtPassword.getPassword().length==0) {
+                JOptionPane.showMessageDialog(null, "Digite la contraseña");
+                txtPassword.requestFocus();
+                return;
+            }
+            try{
+            ResultSet rs = objConexion.leer("SELECT id_supervisor FROM supervisor WHERE 'usuario' ='"+usuario+"'AND 'contraseña' ='"+password+"'");
+            while(rs.next()){
+                id = rs.getString("id_supervisor");                
+            }
+            if (id.equals("")){
+                    JOptionPane.showMessageDialog (null,"Usuario no registrado");
+            }else{
+                RegistrarEmpleado obj= new RegistrarEmpleado();
+                obj.setVisible(true);
+                this.setVisible(false);
+            }
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(null,ex);
+            }
+        
+        // Cierro la conexión con la Base de Datos
+        objConexion.desconectar();*/
     }//GEN-LAST:event_btnInciarActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed

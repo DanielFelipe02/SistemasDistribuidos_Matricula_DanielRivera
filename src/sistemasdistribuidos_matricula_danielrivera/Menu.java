@@ -33,8 +33,8 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnInicioSupervisor = new javax.swing.JButton();
+        btnInicioCajero = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -44,49 +44,52 @@ public class Menu extends javax.swing.JFrame {
         jLabel3.setText("Supervisor");
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(50, 160, 140, 40);
+        jLabel3.setBounds(40, 210, 140, 40);
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel2.setText("Estudiante");
+        jLabel2.setText("Cajero");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(50, 250, 140, 40);
+        jLabel2.setBounds(40, 290, 140, 40);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ajustes.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnInicioSupervisor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ajustes.png"))); // NOI18N
+        btnInicioSupervisor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnInicioSupervisorActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(230, 160, 80, 50);
+        getContentPane().add(btnInicioSupervisor);
+        btnInicioSupervisor.setBounds(230, 210, 80, 50);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuario.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnInicioCajero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuario.png"))); // NOI18N
+        btnInicioCajero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnInicioCajeroActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(230, 250, 80, 50);
+        getContentPane().add(btnInicioCajero);
+        btnInicioCajero.setBounds(230, 290, 80, 50);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lenovo\\Documents\\NetBeansProjects\\SistemasDistribuidos_Matricula_DanielRivera\\src\\imagenes\\fondo_Menu.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo_Menu.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 350, 450);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnInicioCajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioCajeroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        InicioCajero obj= new InicioCajero();
+        obj.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnInicioCajeroActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnInicioSupervisorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioSupervisorActionPerformed
         // TODO add your handling code here:
         InicioSupervisor obj= new InicioSupervisor();
         obj.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnInicioSupervisorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,8 +127,8 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnInicioCajero;
+    private javax.swing.JButton btnInicioSupervisor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

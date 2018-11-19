@@ -5,23 +5,25 @@
  */
 package sistemasdistribuidos_matricula_danielrivera;
 
+import java.sql.*;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Lenovo
  */
-public class InicioEmpleado extends javax.swing.JFrame {
-
+public class InicioCajero extends javax.swing.JFrame {
+    
+    private Conexion objConexion = new Conexion();
     /**
      * Creates new form Login
      */
-    public InicioEmpleado() {
+    public InicioCajero() {
         initComponents();
         setSize(360,460);//Para dar tamaño a la ventana
         setResizable(false);//Para que no se pueda retirar
         setLocationRelativeTo(null);//Para que aparezca a la mitad de la pantalla
-        setTitle("Ingreso Empleado");
+        setTitle("Ingreso Supervisor");
     }
 
     /**
@@ -55,6 +57,12 @@ public class InicioEmpleado extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnInciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 120, 70));
+
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 200, 40));
         jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 200, 40));
 
@@ -95,52 +103,134 @@ public class InicioEmpleado extends javax.swing.JFrame {
         // Definir las variables a utilizar
             String usuario;
             String password;
+            String id = "";
+            usuario = txtUsuario.getText();
+            password = new String(txtPassword.getPassword());
 
-        try{
-            //Valido los campos vacios
+            String sql="SELECT * FROM cajero WHERE usuario ='"+usuario+"'AND contraseña = '"+password+"'";
+            
+            try {
+                
+                if (txtUsuario.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Digite el usuario");
+                    txtUsuario.requestFocus();
+                    return;
+                }
+                if (txtPassword.getPassword().length==0) {
+                    JOptionPane.showMessageDialog(null, "Digite la contraseña");
+                    txtPassword.requestFocus();
+                    return;
+                }
+                
+                Statement st = cn.createStatement();
+                ResultSet rs=st.executeQuery(sql);
+                
+                while (rs.next()){
+                    id = rs.getString("id_cajero");
+                }
+                if (id.equals("")){
+                    JOptionPane.showMessageDialog (null,"Usuario no registrado");
+                }
+                else{
+
+                    RegistrarVentas obj= new RegistrarVentas();
+                    obj.setVisible(true);
+                    this.setVisible(false);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,e);
+            }
+            /*objConexion.conexion();
+            
             if (txtUsuario.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Digite el usuario");
                 txtUsuario.requestFocus();
-               return;
+                return;
             }
             if (txtPassword.getPassword().length==0) {
                 JOptionPane.showMessageDialog(null, "Digite la contraseña");
                 txtPassword.requestFocus();
                 return;
             }
-            //Asigno los elementos graficos a las variables
-            usuario=txtUsuario.getText();
-            char cadena[]=txtPassword.getPassword();
-            password=new String(cadena);
-         
-             //Procesos
-            if (usuario.equals("admin")&& password.equals("123")) {
-                //iniciamos Sesión-instanciamos
-                Ventas obj= new Ventas();
+            try{
+            ResultSet rs = objConexion.leer("SELECT id_supervisor FROM supervisor WHERE 'usuario' ='"+usuario+"'AND 'contraseña' ='"+password+"'");
+            while(rs.next()){
+                id = rs.getString("id_supervisor");                
+            }
+            if (id.equals("")){
+                    JOptionPane.showMessageDialog (null,"Usuario no registrado");
+            }else{
+                RegistrarEmpleado obj= new RegistrarEmpleado();
                 obj.setVisible(true);
                 this.setVisible(false);
-            } 
-            else {
-                //imprimo nombre de usuario o password incorrecto
-                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta");
-                txtUsuario.setText("");
-                txtPassword.setText("");
-                txtUsuario.requestFocus();
-    }//GEN-LAST:event_btnInciarActionPerformed
             }
-        catch (Exception e) {
-        JOptionPane.showMessageDialog(null,"Error:"+ e);
-        }
-    }
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(null,ex);
+            }
+        
+        // Cierro la conexión con la Base de Datos
+        objConexion.desconectar();*/
+    }//GEN-LAST:event_btnInciarActionPerformed
+
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         Menu obj= new Menu();
         obj.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
         
     /**
      * @param args the command line arguments
      */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(InicioCajero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(InicioCajero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(InicioCajero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(InicioCajero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new InicioCajero().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInciar;
@@ -152,4 +242,8 @@ public class InicioEmpleado extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+BaseDeDatos mysql=new BaseDeDatos();
+Connection cn = mysql.Connectar();
+    
 }
+
